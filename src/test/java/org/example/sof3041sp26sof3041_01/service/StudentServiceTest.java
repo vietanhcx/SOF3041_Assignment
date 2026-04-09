@@ -51,4 +51,43 @@ class StudentServiceTest {
         assertEquals("Mark must be between 0 and 10", exception.getMessage());
 
     }
+
+    // updateStudent
+    @Test
+    void updateStudentWithValidStudent() {
+
+        Student student = new Student(1, "A", 20, 9.0);
+        studentService.addStudent(student);
+
+        student.setName("B");
+        student.setAge(21);
+        student.setMark(8.0);
+
+        studentService.updateStudent(student);
+
+        assertEquals("B", studentService.getStudentById(student.getId()).getName());
+        assertEquals(21, studentService.getStudentById(student.getId()).getAge());
+        assertEquals(8.0, studentService.getStudentById(student.getId()).getMark());
+    }
+
+    @Test
+    void updateStudentWithNull() {
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> studentService.updateStudent(null));
+        assertEquals("Student can not be null", exception.getMessage());
+    }
+
+    @Test
+    void updateStudentWithInvalidName() {
+
+        Student student = new Student(1, "A", 20, 9.0);
+        studentService.addStudent(student);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                studentService.updateStudent(new Student(1, "", 20, 9.0)));
+        assertEquals("Name must not be null or empty", exception.getMessage());
+
+    }
+
+    //
 }
