@@ -13,5 +13,16 @@ public class MyUtil {
         return new StringBuilder(input).reverse().toString();
     }
 
+    public int tinhTong(int[] mang) {
+        if (mang == null) {
+            return 0;
+        }
+        int tong = 0;
+        for (int so : mang) {
+            tong += so;
+        }
+        return tong;
+    }
+
 
 }

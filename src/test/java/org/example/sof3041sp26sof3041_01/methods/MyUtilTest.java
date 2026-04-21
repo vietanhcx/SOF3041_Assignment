@@ -34,7 +34,19 @@ class MyUtilTest {
         System.out.println("Tear down after each");
     }
 
+    @Test
+    @DisplayName("Tinh tong mang so nguyen")
+    void test_tinhTong() {
+        int[] mang = {1, 2, 3, 4, 5};
+        Assertions.assertEquals(15, myUtil.tinhTong(mang));
+    }
 
+    @Test
+    @DisplayName("Tinh tong mang rong")
+    void test_tinhTongRong() {
+        int[] mang = {};
+        Assertions.assertEquals(0, myUtil.tinhTong(mang));
+    }
 
     @Test
     @DisplayName("Cong")
